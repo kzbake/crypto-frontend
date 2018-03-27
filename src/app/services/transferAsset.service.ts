@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { transferAsset } from '../org.acme.biznet';
 import 'rxjs/Rx';
 import * as io from 'socket.io-client';
+import {environment} from '../../environments/environment';
+// import {HttpClient} from '@angular/common/http';
 
 // Can be injected into a constructor
 @Injectable()
@@ -12,7 +14,7 @@ export class transferAssetService {
     private NAMESPACE: string = 'transferAsset';
 
     constructor(private dataService: DataService<transferAsset>) {
-        this.socket = io('http://localhost:3005', {query: {token: 1}});
+        this.socket = io(environment.socket_io, {query: {token: 1}});
         this.socket.on('connect', () => {
             console.log('connect');
             this.socket.send(1);
@@ -25,10 +27,13 @@ export class transferAssetService {
         return this.dataService.getAll(this.NAMESPACE);
     }
 
-		public getByFilter(filter: any): Observable<transferAsset[]> {
-			return this.dataService.getAll(this.NAMESPACE+'?filter='+filter);
-		}
+    public getByFilter(filter: any): Observable<transferAsset[]> {
+        return this.dataService.getAll(this.NAMESPACE+'?filter='+filter);
+    }
 
+    public sendToDB(data): Observable<transferAsset[]> {
+        return this.dataService.sendToDb(data);
+    }
     public getAsset(id: any): Observable<transferAsset> {
       return this.dataService.getSingle(this.NAMESPACE, id);
     }

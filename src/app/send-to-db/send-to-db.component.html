@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <!--<div *ngIf="errorMessage" class="alert alert-danger" role="alert">-->
+            <!--<strong>Error:</strong> {{errorMessage}}-->
+        <!--</div>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Search Form</h4>
+                        <p class="category">Provide criteria for search</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <form name="form" (ngSubmit)="f.form.valid && addTransaction()" #f="ngForm" novalidate>
+                                    <div class="form-group">
+                                        <label class="text-white text-uppercase" for="data">Input Data</label>
+                                        <textarea class="form-control" name="data" id="data"
+                                               [(ngModel)]="model.data" style="height: 250px"
+                                                  #data="ngModel"></textarea>
+                                    </div>
+                                    <div class="form-group text-center" *ngIf="status">
+                                        <label *ngIf="status==='success'" class="label label-success">
+                                            {{error}}
+                                        </label>
+                                        <label *ngIf="status==='error'" class="label label-danger">
+                                            {{error}}
+                                        </label>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <button [disabled]="loading" class="btn btn-danger btn-lg btn-round"><h5>Send to DB</h5></button></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

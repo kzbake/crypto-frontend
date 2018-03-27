@@ -25,6 +25,11 @@ export class DataService<Type> {
           .catch(this.handleError);
     }
 
+    sendToDb(body) {
+        console.log(body)
+        return this.http.post(environment.BackendApi + 'crypto/add-transaction', body)
+            .map(this.extractData)
+    }
     public getSingle(ns: string, id: string): Observable<Type> {
         console.log('GetSingle ' + ns);
 
@@ -62,6 +67,7 @@ export class DataService<Type> {
     }
 
     private handleError(error: any): Observable<string> {
+        console.log(error)
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message
         let errMsg = (error.message) ? error.message :

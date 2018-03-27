@@ -108,8 +108,8 @@ md-free-angular-cli
 │   │   ├── table-list
 │   │   │   ├── table-list.component.css
 │   │   │   ├── table-list.component.html
-│   │   │   ├── transaction.component.spec.ts
-│   │   │   └── transaction.component.ts
+│   │   │   ├── send-to-db.component.spec.ts
+│   │   │   └── send-to-db.component.ts
 │   │   ├── typography
 │   │   │   ├── typography.component.css
 │   │   │   ├── typography.component.html

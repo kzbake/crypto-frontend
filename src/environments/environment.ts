@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   HyperledgerApi: 'http://localhost:3000/api/',
-  BackendApi: 'http://localhost:3005/api/v1/'
+  BackendApi: 'http://localhost:3005/api/v1/',
+  socket_io: 'http://localhost:3005'
 };

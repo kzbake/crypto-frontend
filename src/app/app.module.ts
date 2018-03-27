@@ -14,13 +14,15 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TransactionComponent } from './transactions/transaction.component';
 import {DataService} from './services/data.service';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {SendToDbComponent} from './send-to-db/send-to-db.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserProfileComponent,
-    TransactionComponent
+    TransactionComponent,
+    SendToDbComponent
 
   ],
   imports: [
