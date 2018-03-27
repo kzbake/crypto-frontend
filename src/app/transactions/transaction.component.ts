@@ -18,8 +18,14 @@ export class TransactionComponent implements OnInit {
   constructor(private servicetransferAsset: transferAssetService) {
 
       this.servicetransferAsset.socket.on('send', (transaction) => {
+          const message = "Transaction:<b>"+transaction.transactionId+"</b>>fetched to the DB";
+          this.showNotification(transaction.transactionId, message)
+      })
 
-          this.showNotification(transaction.transactionId)
+      this.servicetransferAsset.socket.on('fetch', (transaction) => {
+          const message = "Transaction:<b>"+transaction.transactionId+"</b>>fetched to the Hyperledger";
+          this.showNotification(transaction.transactionId, message);
+          this.search();
       })
 
   }
@@ -29,11 +35,11 @@ export class TransactionComponent implements OnInit {
       this.search();
   }
 
-    showNotification(transactionId){
+    showNotification(transactionId, message){
         const type = ['','info','success','warning','danger'];
         $.notify({
             icon: "notifications",
-            message: "Transaction:<b>"+transactionId+"</b>>fetched to the DB"
+            message: message
 
         },{
             type: type[2],
