@@ -1,0 +1,104 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Search Form</h4>
+                        <p class="category">Provide criteria for search</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <form name="form" (ngSubmit)="f.form.valid && search()" #f="ngForm" novalidate>
+                                    <div class="form-group">
+                                        <label class="text-white text-uppercase" for="address">AddressFrom</label>
+                                        <input type="text" class="form-control" name="address" id="address"
+                                               [(ngModel)]="model.address"
+                                               #address="ngModel"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label class="text-white text-uppercase" for="amountGT">Amount greater
+                                                than</label>
+                                            <input type="text" class="form-control" name="v" id="amountGT"
+                                                   [(ngModel)]="model.amountGT"
+                                                   #amountGT="ngModel"/>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label class="text-white text-uppercase" for="amountLT">Amount less than</label>
+                                            <input type="text" class="form-control" name="v" id="amountLT"
+                                                   [(ngModel)]="model.amountLT"
+                                                   #amountLT="ngModel"/>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group"
+                                         [ngClass]="{ 'has-error': f.submitted && !datelimit.valid }">
+                                        <label class="text-white text-uppercase" for="datelimit">Date Limit</label>
+                                        <select class="form-control" name="datelimit" [(ngModel)]="model.datelimit"
+                                                id="datelimit" #datelimit="ngModel">
+                                            <option value="1">1 Day</option>
+                                            <option value="7" selected>1 Week</option>
+                                            <option value="31">1 Month</option>
+                                            <option value="365">1 Year</option>
+                                        </select>
+                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center" *ngIf="status">
+                                        <label *ngIf="status==='success'" class="label label-success">
+                                            {{error}}
+                                        </label>
+                                        <label *ngIf="status==='error'" class="label label-danger">
+                                            {{error}}
+                                        </label>
+                                    </div>
+                                    <div class="form-group text-center">
+                                    <button [disabled]="loading" class="btn btn-danger btn-lg btn-round"><h5>Find
+                                        transactions</h5></button></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Transactions</h4>
+                        <p class="category">Migrated transactions</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-bordered table-responsive table-striped">
+                            <thead class="text-danger">
+                            <tr>
+                                <th>Transaction Id</th>
+                                <th>AddressTo</th>
+                                <th>AddressFrom</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let asset of allAssets">
+                                <td>{{asset.transactionId}}</td>
+                                <td>{{asset.transfer.addressTo}}</td>
+                                <td>{{asset.fromWallet.address}}</td>
+                                <td class="text-danger">{{asset.transfer.Amount}}</td>
+                                <td>{{asset.date | date}}</td>
+                                <td>{{asset.Status}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
