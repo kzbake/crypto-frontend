@@ -17,7 +17,6 @@ import { IconsComponent } from './icons/icons.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import {DataService} from './services/data.service';
-import {Configuration} from './configuration';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
@@ -41,7 +40,6 @@ RouterModule,
     AppRoutingModule
   ],
   providers: [
-      Configuration,
       DataService,
       {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
