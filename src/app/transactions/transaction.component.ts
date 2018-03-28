@@ -31,7 +31,7 @@ export class TransactionComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.model.datelimit=7;
+      this.model.datelimit=1;
       this.search();
   }
 
